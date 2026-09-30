@@ -155,9 +155,13 @@ main { position: relative; z-index: 1; }
   position: relative; display: grid; grid-template-columns: minmax(0, 1fr);
   grid-template-areas: "name" "lede" "meta" "actions" "photo";
 }
-/* transparent cutout; its flat bottom edge stands on the line above the marquee
-   (negative margin = the hero's bottom padding) */
-.hero-photo { grid-area: photo; justify-self: center; display: block; width: min(78%, 340px); height: auto; margin: 24px 0 -40px; }
+/* transparent cutout, vertically centred on the text; the flat bottom edge where the photo was cut
+   dissolves into the page (eased fade, so there's no visible line where it ends) */
+.hero-photo {
+  grid-area: photo; justify-self: center; display: block; width: min(72%, 300px); height: auto; margin-top: 24px;
+  --fade: linear-gradient(to bottom, #000 62%, rgb(0 0 0 / .9) 69.6%, rgb(0 0 0 / .65) 77.2%, rgb(0 0 0 / .35) 84.8%, rgb(0 0 0 / .1) 92.4%, transparent);
+  -webkit-mask-image: var(--fade); mask-image: var(--fade);
+}
 .hero-name { grid-area: name; margin-bottom: 16px; font: 700 clamp(3.75rem, 13vw, 9rem)/.9 var(--heading); letter-spacing: -.04em; }
 /* extra bottom room so the descender of "j" isn't clipped by the reveal mask */
 .hero-name .line { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
@@ -405,10 +409,10 @@ main { position: relative; z-index: 1; }
 @media (min-width: 768px) {
   .hero { padding: 44px 0 56px; }
   .hero-inner {
-    grid-template-columns: minmax(0, 1fr) 300px; column-gap: 40px;
+    grid-template-columns: minmax(0, 1fr) 240px; column-gap: 40px;
     grid-template-areas: "name photo" "lede photo" "meta photo" "actions photo";
   }
-  .hero-photo { width: 100%; align-self: end; margin: 0 0 -56px; }
+  .hero-photo { width: 100%; align-self: center; margin: 0; }
   .section { padding: 44px 0; }
   .sec-head { margin-bottom: 28px; }
   .sec-num { width: 44px; height: 44px; }
@@ -433,7 +437,7 @@ main { position: relative; z-index: 1; }
   }
   .nav a { padding: 6px 14px; border: 0; font-size: 12px; }
   .cta-glow { display: inline-flex; }
-  .hero-inner { grid-template-columns: minmax(0, 1fr) 400px; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr) 320px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
