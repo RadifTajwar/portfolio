@@ -1,0 +1,5 @@
+# local tooling and old drafts — not part of the site
+.DS_Store
+.claude/
+graft/
+archive/

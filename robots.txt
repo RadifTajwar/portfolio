@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://radiftajwar.github.io/portfolio/sitemap.xml
